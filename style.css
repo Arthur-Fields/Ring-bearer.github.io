@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BagBuddy</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>🎒 BagBuddy</h1>
+        <p>Vergeet nooit meer je schoolspullen!</p>
+    </header>
+
+    <main>
+
+        <!-- STARTPAGINA -->
+        <div id="startPagina">
+
+            <!-- INPAKLIJST -->
+            <section class="inpaklijstSectie">
+                <h2>📋 Inpaklijst</h2>
+
+                <p id="volgendeDagTekst">
+                    Je benodigde schoolspullen worden hier getoond.
+                </p>
+
+                <div id="inpaklijst"></div>
+            </section>
+
+
+            <!-- INSTELLINGEN -->
+            <section class="actie">
+                <h2>⚙️ Instellingen</h2>
+
+                <p>
+                    Pas hier je vakken, rooster en vaste spullen aan.
+                </p>
+
+                <button onclick="toonVakken()">
+                    📚 Vakken beheren
+                </button>
+
+                <button onclick="openRooster()">
+                    🗓️ Rooster
+                </button>
+
+                <button onclick="openAltijdMeenemen()">
+                    🎒 Altijd meenemen
+                </button>
+            </section>
+
+        </div>
+
+
+        <!-- VAKKENPAGINA -->
+        <div id="vakkenPagina" class="verborgen">
+
+            <section>
+                <h2>📚 Mijn vakken</h2>
+
+                <div id="vakkenLijst"></div>
+
+                <button onclick="toonVakToevoegen()">
+                    + Vak toevoegen
+                </button>
+
+                <button class="terugKnop" onclick="toonStartPagina()">
+                    ← Terug
+                </button>
+            </section>
+
+
+            <!-- VAK TOEVOEGEN / BEWERKEN -->
+            <section id="nieuwVak" class="verborgen">
+
+                <h2 id="formulierTitel">➕ Nieuw vak</h2>
+
+                <label for="vakNaam">
+                    Naam van het vak:
+                </label>
+
+                <input
+                    type="text"
+                    id="vakNaam"
+                    placeholder="Bijvoorbeeld: Wiskunde"
+                >
+
+                <label for="materiaal">
+                    Wat moet je voor dit vak meenemen?
+                </label>
+
+                <input
+                    type="text"
+                    id="materiaal"
+                    placeholder="Bijvoorbeeld: boek, schrift, geodriehoek"
+                >
+
+                <button onclick="vakOpslaan()">
+                    Opslaan
+                </button>
+
+                <button
+                    class="annuleerKnop"
+                    onclick="verbergVakToevoegen()">
+                    Annuleren
+                </button>
+
+            </section>
+
+        </div>
+
+
+        <!-- ROOSTERPAGINA -->
+        <div id="roosterPagina" class="verborgen">
+
+            <section>
+                <h2>🗓️ Mijn rooster</h2>
+
+                <p>
+                    Kies per dag welke vakken je hebt.
+                    Je kunt dit later altijd aanpassen.
+                </p>
+
+                <div id="roosterLijst"></div>
+
+                <button onclick="roosterOpslaan()">
+                    💾 Rooster opslaan
+                </button>
+
+                <button class="terugKnop" onclick="toonStartPagina()">
+                    ← Terug
+                </button>
+            </section>
+
+        </div>
+
+
+        <!-- ALTIJD MEENEMEN -->
+        <div id="altijdMeenemenPagina" class="verborgen">
+
+            <section>
+                <h2>🎒 Altijd meenemen</h2>
+
+                <p>
+                    Deze spullen verschijnen iedere schooldag
+                    automatisch op je inpaklijst.
+                </p>
+
+                <div id="vasteSpullenLijst"></div>
+
+                <input
+                    type="text"
+                    id="nieuwVastSpul"
+                    placeholder="Bijvoorbeeld: pennenzak"
+                >
+
+                <button onclick="vastSpulToevoegen()">
+                    + Spul toevoegen
+                </button>
+
+                <button class="terugKnop" onclick="toonStartPagina()">
+                    ← Terug
+                </button>
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <p>BagBuddy</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
