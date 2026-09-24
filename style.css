@@ -1,182 +1,257 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BagBuddy</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-<body>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    min-height: 100vh;
+}
 
-    <header>
-        <h1>🎒 BagBuddy</h1>
-        <p>Vergeet nooit meer je schoolspullen!</p>
-    </header>
+header {
+    background-color: #2f6fed;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
 
-    <main>
+header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
 
-        <!-- STARTPAGINA -->
-        <div id="startPagina">
+header p {
+    font-size: 16px;
+}
 
-            <!-- INPAKLIJST -->
-            <section class="inpaklijstSectie">
-                <h2>📋 Inpaklijst</h2>
+main {
+    width: 90%;
+    max-width: 600px;
+    margin: 25px auto;
+}
 
-                <p id="volgendeDagTekst">
-                    Je benodigde schoolspullen worden hier getoond.
-                </p>
+section {
+    background-color: white;
+    border-radius: 15px;
+    padding: 22px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
 
-                <div id="inpaklijst"></div>
-            </section>
+section h2 {
+    margin-bottom: 10px;
+}
 
+section p {
+    line-height: 1.5;
+}
 
-            <!-- INSTELLINGEN -->
-            <section class="actie">
-                <h2>⚙️ Instellingen</h2>
+button {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 15px;
+    background-color: #2f6fed;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-                <p>
-                    Pas hier je vakken, rooster en vaste spullen aan.
-                </p>
+button:hover {
+    opacity: 0.9;
+}
 
-                <button onclick="toonVakken()">
-                    📚 Vakken beheren
-                </button>
+input {
+    width: 100%;
+    padding: 13px;
+    margin-top: 7px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
 
-                <button onclick="openRooster()">
-                    🗓️ Rooster
-                </button>
-
-                <button onclick="openAltijdMeenemen()">
-                    🎒 Altijd meenemen
-                </button>
-            </section>
-
-        </div>
-
-
-        <!-- VAKKENPAGINA -->
-        <div id="vakkenPagina" class="verborgen">
-
-            <section>
-                <h2>📚 Mijn vakken</h2>
-
-                <div id="vakkenLijst"></div>
-
-                <button onclick="toonVakToevoegen()">
-                    + Vak toevoegen
-                </button>
-
-                <button class="terugKnop" onclick="toonStartPagina()">
-                    ← Terug
-                </button>
-            </section>
-
-
-            <!-- VAK TOEVOEGEN / BEWERKEN -->
-            <section id="nieuwVak" class="verborgen">
-
-                <h2 id="formulierTitel">➕ Nieuw vak</h2>
-
-                <label for="vakNaam">
-                    Naam van het vak:
-                </label>
-
-                <input
-                    type="text"
-                    id="vakNaam"
-                    placeholder="Bijvoorbeeld: Wiskunde"
-                >
-
-                <label for="materiaal">
-                    Wat moet je voor dit vak meenemen?
-                </label>
-
-                <input
-                    type="text"
-                    id="materiaal"
-                    placeholder="Bijvoorbeeld: boek, schrift, geodriehoek"
-                >
-
-                <button onclick="vakOpslaan()">
-                    Opslaan
-                </button>
-
-                <button
-                    class="annuleerKnop"
-                    onclick="verbergVakToevoegen()">
-                    Annuleren
-                </button>
-
-            </section>
-
-        </div>
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
 
 
-        <!-- ROOSTERPAGINA -->
-        <div id="roosterPagina" class="verborgen">
+/* -------------------------
+   INPAKLIJST
+------------------------- */
 
-            <section>
-                <h2>🗓️ Mijn rooster</h2>
+.inpaklijstSectie {
+    border: 2px solid #2f6fed;
+}
 
-                <p>
-                    Kies per dag welke vakken je hebt.
-                    Je kunt dit later altijd aanpassen.
-                </p>
+.inpakVak {
+    background-color: #f1f4f8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 12px;
+}
 
-                <div id="roosterLijst"></div>
+.inpakVak h3 {
+    margin-bottom: 8px;
+}
 
-                <button onclick="roosterOpslaan()">
-                    💾 Rooster opslaan
-                </button>
+.inpakVak ul {
+    padding-left: 20px;
+}
 
-                <button class="terugKnop" onclick="toonStartPagina()">
-                    ← Terug
-                </button>
-            </section>
+.geenSpullen {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #f1f4f8;
+    border-radius: 10px;
+}
 
-        </div>
+.vasteSpullen {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #eef5ff;
+    border-radius: 10px;
+}
 
+.vasteSpullen h3 {
+    margin-bottom: 8px;
+}
 
-        <!-- ALTIJD MEENEMEN -->
-        <div id="altijdMeenemenPagina" class="verborgen">
-
-            <section>
-                <h2>🎒 Altijd meenemen</h2>
-
-                <p>
-                    Deze spullen verschijnen iedere schooldag
-                    automatisch op je inpaklijst.
-                </p>
-
-                <div id="vasteSpullenLijst"></div>
-
-                <input
-                    type="text"
-                    id="nieuwVastSpul"
-                    placeholder="Bijvoorbeeld: pennenzak"
-                >
-
-                <button onclick="vastSpulToevoegen()">
-                    + Spul toevoegen
-                </button>
-
-                <button class="terugKnop" onclick="toonStartPagina()">
-                    ← Terug
-                </button>
-            </section>
-
-        </div>
-
-    </main>
+.vasteSpullen ul {
+    padding-left: 20px;
+}
 
 
-    <footer>
-        <p>BagBuddy</p>
-    </footer>
+/* -------------------------
+   VAKKEN
+------------------------- */
+
+.vakKaart {
+    background-color: #f1f4f8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.vakKaart h3 {
+    margin-bottom: 8px;
+}
+
+.vakKaart ul {
+    padding-left: 20px;
+}
+
+.vakKnoppen {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.vakKnoppen button {
+    margin-top: 0;
+}
+
+.bewerkKnop {
+    background-color: #555;
+}
+
+.verwijderKnop {
+    background-color: #d9534f;
+}
+
+.terugKnop {
+    background-color: #777;
+}
+
+.annuleerKnop {
+    background-color: #999;
+}
 
 
-    <script src="script.js"></script>
+/* -------------------------
+   ROOSTER
+------------------------- */
 
-</body>
-</html>
+.dagKaart {
+    background-color: #f1f4f8;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.dagKaart h3 {
+    margin-bottom: 12px;
+}
+
+.vakKeuze {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.vakKeuze input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.vakKeuze label {
+    margin: 0;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+
+/* -------------------------
+   ALTIJD MEENEMEN
+------------------------- */
+
+.vastSpulKaart {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background-color: #f1f4f8;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-top: 10px;
+}
+
+.vastSpulNaam {
+    font-weight: bold;
+}
+
+.vastSpulKaart button {
+    width: auto;
+    margin: 0;
+    padding: 9px 12px;
+    background-color: #d9534f;
+    font-size: 14px;
+}
+
+
+/* -------------------------
+   ALGEMEEN
+------------------------- */
+
+.verborgen {
+    display: none;
+}
+
+footer {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+    font-size: 14px;
+}
